@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "joegitau/fibonacci-frontend",
+            "hostname": "frontend",
+            "essential": false
+        },
+        {
+            "name": "api",
+            "image": "joegitau/fibonacci-api",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "joegitau/fibonacci-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "joegitau/fibonacci-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hosport": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "api"]
+        }
+    ]
+}
